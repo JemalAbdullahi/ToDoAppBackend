@@ -24,10 +24,6 @@ def create_app(config_filename):
 
     return app
 
-# app
-
-
-app = create_app("config")
 
 # Route
 api.add_resource(Users, '/user')
@@ -46,4 +42,5 @@ api.add_resource(Search, '/search')
 
 # Run
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app = create_app("config")
+    app.run(debug=True)
