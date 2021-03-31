@@ -1,2 +1,2 @@
 web: gunicorn app:app
-release: python migrate.py db upgrade
+release: python project\migrate.py db upgrade
