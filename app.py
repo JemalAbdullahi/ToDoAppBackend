@@ -7,11 +7,14 @@ from resources.Signin import Signin
 from resources.task import Tasks
 from resources.subtask import SubTasks
 from resources.search import Search
+from resources.index import index
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
 # Route
+api.add_resource(Index, '/')
+
 api.add_resource(Users, '/user')
 
 api.add_resource(Groups, '/group')
