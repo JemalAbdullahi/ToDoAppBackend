@@ -7,7 +7,7 @@ from resources.Signin import Signin
 from resources.task import Tasks
 from resources.subtask import SubTasks
 from resources.search import Search
-from resources.index import index
+from resources.index import Index
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
