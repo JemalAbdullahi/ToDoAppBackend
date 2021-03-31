@@ -25,8 +25,3 @@ api.add_resource(Tasks, '/tasks')
 api.add_resource(SubTasks, '/subtasks')
 
 api.add_resource(Search, '/search')
-
-
-@app.route('/')
-def index():
-    return "<h1>Welcome to our server !!</h1>"
