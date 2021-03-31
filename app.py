@@ -1,5 +1,4 @@
 from flask import Blueprint
-from run import app
 from flask_restful import Api
 from resources.group import Groups
 from resources.groupmembers import GroupMembers
