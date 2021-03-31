@@ -12,6 +12,7 @@ from resources.search import Search
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
+
 def create_app(config_filename):
     app = flask(__name__)
     app.config.from_object(config_filename)
@@ -24,6 +25,7 @@ def create_app(config_filename):
     return app
 
 # app
+
 
 app = create_app("config")
 
@@ -41,3 +43,7 @@ api.add_resource(Tasks, '/tasks')
 api.add_resource(SubTasks, '/subtasks')
 
 api.add_resource(Search, '/search')
+
+# Run
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=True)
