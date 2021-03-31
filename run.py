@@ -14,7 +14,8 @@ def create_app(config_filename):
     return app
 
 
+app = create_app("config")
+
 # Run
 if __name__ == "__main__":
-    app = create_app("config")
     app.run(debug=True)
