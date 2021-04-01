@@ -9,12 +9,6 @@ from resources.subtask import SubTasks
 from resources.search import Search
 
 api_bp = Blueprint('api', __name__)
-
-@api_bp.route('/')
-def index():
-    return "<h1>Welcome to our server !!</h1>"
-
-
 api = Api(api_bp)
 
 # Route
