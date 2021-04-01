@@ -3,9 +3,9 @@
 #from marshmallow import Schema, fields, pre_load, validate
 #from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-
+from app import db
 #ma = Marshmallow()
-db = SQLAlchemy()
+#db = SQLAlchemy()
 
 group_member_table = db.Table(
     'group_member', db.Model.metadata,

@@ -1,27 +1,12 @@
-from flask import Blueprint
-from flask_restful import Api
-from resources.group import Groups
-from resources.groupmembers import GroupMembers
-from resources.user import Users
-from resources.Signin import Signin
-from resources.task import Tasks
-from resources.subtask import SubTasks
-from resources.search import Search
+from api import api_bp
+from flask_sqlalchemy import SQLAlchemy
 
-api_bp = Blueprint('api', __name__)
-api = Api(api_bp)
+app = Flask(__name__)
+app.config.from_object("config")
+db = SQLAlchemy(app)
 
-# Route
-api.add_resource(Users, '/user')
+app.register_blueprint(api_bp, url_prefix='/api')
 
-api.add_resource(Groups, '/group')
 
-api.add_resource(GroupMembers, '/groupmember')
-
-api.add_resource(Signin, '/signin')
-
-api.add_resource(Tasks, '/tasks')
-
-api.add_resource(SubTasks, '/subtasks')
-
-api.add_resource(Search, '/search')
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -1,4 +1,4 @@
-from flask import Flask
+""" from flask import Flask
 
 
 def create_app(config_filename):
@@ -13,15 +13,7 @@ def create_app(config_filename):
 
     return app
 
-
-app = create_app("config")
-
-
-@app.route('/')
-def index():
-    return "<h1>Welcome to our server !!</h1>"
-
-
 # Run
 if __name__ == "__main__":
     app.run(debug=True)
+ """
