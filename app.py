@@ -1,12 +1,13 @@
-from api.api import api_bp
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object("config")
-db = SQLAlchemy(app)
-db.init_app(app)
 
+from api.api import api_bp
 app.register_blueprint(api_bp, url_prefix='/api')
+
+from Models import db
+db.init_app(app)
 
 
 @app.route('/')
