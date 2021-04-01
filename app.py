@@ -1,6 +1,7 @@
+import flask
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = flask(__name__)
 app.config.from_object("config")
 
 from api.api import api_bp
