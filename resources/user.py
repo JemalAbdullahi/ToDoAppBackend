@@ -1,12 +1,12 @@
 from flask_restful import Resource
 from flask import request
-from Models import User
+from Models import db, User
 import random
 import string
 
 
 class Users(Resource):
-    #Get User List
+    # Get User List
     def get(self):
         users = User.query.all()
         user_list = []
@@ -14,7 +14,7 @@ class Users(Resource):
             user_list.append(user.serialize_public())
         return {"status": user_list}, 200
 
-    #Create New User (Sign Up/register User)
+    # Create New User (Sign Up/register User)
     def post(self):
         json_data = request.get_json(force=True)
 
@@ -53,7 +53,7 @@ class Users(Resource):
 
         return {"status": 'success', 'data': result}, 201
 
-    #Update User Profile
+    # Update User Profile
     def put(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
@@ -88,7 +88,7 @@ class Users(Resource):
             else:
                 return {'Messege': "No User found with that api key"}, 404
 
-    #Generate new api key
+    # Generate new api key
     def generate_key(self):
         return ''.join(
             random.choice(string.ascii_letters + string.digits)

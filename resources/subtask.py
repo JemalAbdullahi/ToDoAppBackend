@@ -1,12 +1,12 @@
 from flask_restful import Resource
 from flask import request
-from Models import SubTask, Task, User
+from Models import db, SubTask, Task, User
 import random
 import string
 
 
 class SubTasks(Resource):
-    #Create Subtask
+    # Create Subtask
     def post(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
@@ -42,7 +42,7 @@ class SubTasks(Resource):
             else:
                 return {"Messege": "No task found with that id"}, 404
 
-    #List Subtasks
+    # List Subtasks
     def get(self):
         result = []
         header = request.headers["Authorization"]
@@ -88,7 +88,7 @@ class SubTasks(Resource):
                     "Messege": "No SubTask Found with that subtask key"
                 }, 404
 
-    #Delete Subtask
+    # Delete Subtask
     def delete(self):
         header = request.headers["Authorization"]
 

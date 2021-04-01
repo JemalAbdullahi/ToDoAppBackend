@@ -3,6 +3,7 @@
 #from marshmallow import Schema, fields, pre_load, validate
 #from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+from app import db
 #ma = Marshmallow()
 #db = SQLAlchemy()
 
@@ -72,7 +73,7 @@ class User(db.Model):
         for group in self.groups:
             groups.append(Group.serialize(group))
         return groups
-    
+
     def has_groups(self):
         if len(self.get_groups()) > 0:
             return True
@@ -120,13 +121,12 @@ class Task(db.Model):
             'note': self.note,
             'task_key': self.task_key
         }
-    
+
     def get_group_key(self):
         return Group.query.filter_by(id=self.group_id).first().group_key
-    
+
     def get_group_name(self):
         return Group.query.filter_by(id=self.group_id).first().name
-
 
 
 class SubTask(db.Model):

@@ -1,12 +1,12 @@
 from flask_restful import Resource
 from flask import request
-from Models import Group, User, Task, SubTask
+from Models import db, Group, User, Task, SubTask
 import random
 import string
 
 
 class Tasks(Resource):
-    #Create Task
+    # Create Task
     def post(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
@@ -64,7 +64,7 @@ class Tasks(Resource):
             else:
                 return {"Message": "Group Not Found"}, 404
 
-    #Update Task
+    # Update Task
     def put(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
@@ -94,7 +94,7 @@ class Tasks(Resource):
             else:
                 return {"Messege": "No Task with that task key"}, 404
 
-    #Delete Task
+    # Delete Task
     def delete(self):
         header = request.headers["Authorization"]
 

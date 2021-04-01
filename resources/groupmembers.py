@@ -1,11 +1,11 @@
 from flask_restful import Resource
 from flask import request
-from Models import Task, User, Group
+from Models import db, Task, User, Group
 
 
 class GroupMembers(Resource):
 
-    #List Members of a Group
+    # List Members of a Group
     def get(self):
         result = []
         header = request.headers["Authorization"]
@@ -20,7 +20,7 @@ class GroupMembers(Resource):
             else:
                 return {"status": "Group Not Found"}, 404
 
-    #Add Members to a Group, only if Group is public
+    # Add Members to a Group, only if Group is public
     def post(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
@@ -74,7 +74,7 @@ class GroupMembers(Resource):
                 return {"Messege": "No Group with that group key"}, 402 
     """
 
-    #Delete Members: Also, delete Member's tasks related to the specified Group
+    # Delete Members: Also, delete Member's tasks related to the specified Group
     def delete(self):
         header = request.headers["Authorization"]
         username = request.args.get('username')
