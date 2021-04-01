@@ -1,4 +1,4 @@
-from api import api_bp
+from api.api import api_bp
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
