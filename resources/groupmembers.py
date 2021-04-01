@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from Models import Task, db, User, Group
+from Models import Task, User, Group
 
 
 class GroupMembers(Resource):

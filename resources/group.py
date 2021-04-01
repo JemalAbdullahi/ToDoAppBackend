@@ -1,12 +1,12 @@
 from flask_restful import Resource
 from flask import request
-from Models import db, User, Group
+from Models import User, Group
 import random
 import string
 
 
 class Groups(Resource):
-    #Create a Group
+    # Create a Group
     def post(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
@@ -38,7 +38,7 @@ class Groups(Resource):
             else:
                 return {"Messege": "No user with that api key"}, 404
 
-    #List User's Groups
+    # List User's Groups
     def get(self):
         result = []
         header = request.headers["Authorization"]
@@ -52,7 +52,7 @@ class Groups(Resource):
 
             return {"status": 'success', 'data': result}, 200
 
-    #Update Group
+    # Update Group
     def patch(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
@@ -66,7 +66,7 @@ class Groups(Resource):
                     group.name = json_data['name']
                 if (group.is_public != json_data['is_public']):
                     group.is_public = json_data['is_public']
-                #add members field
+                # add members field
 
                 db.session.commit()
 
