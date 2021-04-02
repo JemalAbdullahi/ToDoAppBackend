@@ -9,5 +9,6 @@
 "python.languageServer": "Jedi",
 "python.analysis.extraPaths": [
   "C:\\Users\\Jemal\\projects\\flutter-app-test\\todolist\\Backend"
-]
+],
+"python.terminal.activateEnvInCurrentTerminal": true
 }
