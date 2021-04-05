@@ -1,8 +1,9 @@
-import flask
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-app = flask(__name__)
-app.config.from_object("config")
+app = Flask(__name__)
+app.config.from_object(os.environ['APP_SETTINGS'])
+print(os.environ['APP_SETTINGS'])
 
 from api.api import api_bp
 app.register_blueprint(api_bp, url_prefix='/api')
