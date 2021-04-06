@@ -1,15 +1,16 @@
+from Models import db
+from api.api import api_bp
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 print(os.environ['APP_SETTINGS'])
 
-from api.api import api_bp
 app.register_blueprint(api_bp, url_prefix='/api')
 
-from Models import db
 db.init_app(app)
 
 
