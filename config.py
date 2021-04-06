@@ -21,7 +21,7 @@ class Config(object):
     #SQLALCHEMY_TRACK_MODIFICATIONS = True
     #SQLALCHEMY_DATABASE_URI = "postgresql://postgres:br1810ji@localhost/todo_appdb"
 
-    #conn = psycopg2.connect(SQLALCHEMY_DATABASE_URI, sslmode='require')
+    conn = psycopg2.connect(SQLALCHEMY_DATABASE_URI, sslmode='require')
 
 
 class ProductionConfig(Config):
