@@ -8,7 +8,7 @@ print(os.environ['APP_SETTINGS'])
 from api.api import api_bp
 app.register_blueprint(api_bp, url_prefix='/api')
 
-from Models import db
+from Models import d
 db.init_app(app)
 
 
