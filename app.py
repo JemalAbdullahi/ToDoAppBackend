@@ -9,7 +9,7 @@ print(os.environ['APP_SETTINGS'])
 from api.api import api_bp
 app.register_blueprint(api_bp, url_prefix='/api')
 
-from Models import db
+db = SQLAlchemy()
 db.init_app(app)
 
 
