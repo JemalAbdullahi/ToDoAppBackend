@@ -13,7 +13,7 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     print(os.environ['DATABASE_URL'])
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
     # Below was originally outside of class
 
     #os.environ['DATABASE_URL'] = "postgres://hziyzkfjyqbkgt:ee4fb2d3bf48676497aeacc52b5cc3287ea28d31f82a61b02546a569b7342f0d@ec2-54-205-61-191.compute-1.amazonaws.com:5432/d3r4od0e955sl1"
