@@ -27,6 +27,8 @@ class User(db.Model):
     emailaddress = db.Column(db.String(120))
     api_key = db.Column(db.String())
     avatar = db.Column(db.LargeBinary)
+    time_created = db.Column(db.DateTime, server_default=utcnow())
+    time_updated = db.Column(db.DateTime, onupdate=utcnow())
     groups = db.relationship("Group",
                              secondary=group_member_table,
                              backref="members")
@@ -56,6 +58,8 @@ class User(db.Model):
             'lastname': self.lastname,
             'phonenumber': self.phonenumber,
             'avatar': self.avatar,
+            'time_created': self.time_created,
+            'time_updated': self.time_updated
         }
 
     def serialize_public(self):
@@ -92,6 +96,8 @@ class Task(db.Model):
     completed = db.Column(db.Boolean(), default=False, nullable=False)
     repeats = db.Column(db.String(), default="")
     reminders = db.Column(db.String(), default="")
+    time_created = db.Column(db.DateTime, server_default=utcnow())
+    time_updated = db.Column(db.DateTime, onupdate=utcnow())
     group_id = db.Column(db.Integer(),
                          db.ForeignKey('groups.id', ondelete="CASCADE"))
     task_key = db.Column(db.String(), unique=True)
@@ -119,7 +125,9 @@ class Task(db.Model):
             'reminders': self.reminders,
             'completed': self.completed,
             'note': self.note,
-            'task_key': self.task_key
+            'task_key': self.task_key,
+            'time_created': self.time_created,
+            'time_updated': self.time_updated
         }
 
     def get_group_key(self):
@@ -143,6 +151,8 @@ class SubTask(db.Model):
     reminders = db.Column(db.String())
     group = db.Column(db.String())
     index = db.Column(db.Integer())
+    time_created = db.Column(db.DateTime, server_default=utcnow())
+    time_updated = db.Column(db.DateTime, onupdate=utcnow())
     subtask_key = db.Column(db.String(), unique=True)
 
     def __init__(self, title, task_id, note, completed, repeats, group,
@@ -172,7 +182,9 @@ class SubTask(db.Model):
             'completed': self.completed,
             'note': self.note,
             'index': self.index,
-            'subtask_key': self.subtask_key
+            'subtask_key': self.subtask_key,
+            'time_created': self.time_created,
+            'time_updated': self.time_updated
         }
 
 
@@ -183,6 +195,8 @@ class Group(db.Model):
     name = db.Column(db.String())
     group_key = db.Column(db.String(), unique=True)
     is_public = db.Column(db.Boolean(), default=False)
+    time_created = db.Column(db.DateTime, server_default=utcnow())
+    time_updated = db.Column(db.DateTime, onupdate=utcnow())
 
     def __init__(self, name, group_key, is_public):
         self.name = name
@@ -199,6 +213,8 @@ class Group(db.Model):
             'members': self.get_members(),
             'group_key': self.group_key,
             'is_public': self.is_public,
+            'time_created': self.time_created,
+            'time_updated': self.time_updated
         }
 
     def get_members(self):
