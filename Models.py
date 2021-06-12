@@ -1,11 +1,8 @@
-#from operator import truediv
-#from flask import Flask
-#from marshmallow import Schema, fields, pre_load, validate
-#from flask_marshmallow import Marshmallow
+
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-#from app import db
-#ma = Marshmallow()
+
+
+
 db = SQLAlchemy()
 
 group_member_table = db.Table(
@@ -28,8 +25,8 @@ class User(db.Model):
     emailaddress = db.Column(db.String(120))
     api_key = db.Column(db.String())
     avatar = db.Column(db.LargeBinary)
-    time_created = db.Column(db.DateTime, server_default=func.utcnow())
-    time_updated = db.Column(db.DateTime, onupdate=func.utcnow())
+    time_created = db.Column(db.DateTime(timezone=False), server_default=db.func.now())
+    time_updated = db.Column(db.DateTime(timezone=False), onupdate=db.func.now())
     groups = db.relationship("Group",
                              secondary=group_member_table,
                              backref="members")
@@ -97,8 +94,8 @@ class Task(db.Model):
     completed = db.Column(db.Boolean(), default=False, nullable=False)
     repeats = db.Column(db.String(), default="")
     reminders = db.Column(db.String(), default="")
-    time_created = db.Column(db.DateTime, server_default=func.utcnow())
-    time_updated = db.Column(db.DateTime, onupdate=func.utcnow())
+    time_created = db.Column(db.DateTime(timezone=False), server_default=db.func.now())
+    time_updated = db.Column(db.DateTime(timezone=False), onupdate=db.func.now())
     group_id = db.Column(db.Integer(),
                          db.ForeignKey('groups.id', ondelete="CASCADE"))
     task_key = db.Column(db.String(), unique=True)
@@ -152,8 +149,8 @@ class SubTask(db.Model):
     reminders = db.Column(db.String())
     group = db.Column(db.String())
     index = db.Column(db.Integer())
-    time_created = db.Column(db.DateTime, server_default=func.utcnow())
-    time_updated = db.Column(db.DateTime, onupdate=func.utcnow())
+    time_created = db.Column(db.DateTime(timezone=False), server_default=db.func.now())
+    time_updated = db.Column(db.DateTime(timezone=False), onupdate=db.func.now())
     subtask_key = db.Column(db.String(), unique=True)
 
     def __init__(self, title, task_id, note, completed, repeats, group,
@@ -196,8 +193,8 @@ class Group(db.Model):
     name = db.Column(db.String())
     group_key = db.Column(db.String(), unique=True)
     is_public = db.Column(db.Boolean(), default=False)
-    time_created = db.Column(db.DateTime, server_default=func.utcnow())
-    time_updated = db.Column(db.DateTime, onupdate=func.utcnow())
+    time_created = db.Column(db.DateTime(timezone=False), server_default=db.func.now())
+    time_updated = db.Column(db.DateTime(timezone=False), onupdate=db.func.now())
 
     def __init__(self, name, group_key, is_public):
         self.name = name
@@ -228,3 +225,4 @@ class Group(db.Model):
         if len(self.get_members()) == 0:
             return True
         return False
+
