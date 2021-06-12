@@ -11,7 +11,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'this-really-needs-to-be-changed'
+    #SECRET_KEY = 'this-really-needs-to-be-changed'
     # print(os.environ['DATABASE_URL'])
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
     # Below was originally outside of class
