@@ -56,8 +56,8 @@ class User(db.Model):
             'lastname': self.lastname,
             'phonenumber': self.phonenumber,
             'avatar': self.avatar,
-            'time_created': self.time_created,
-            'time_updated': self.time_updated
+            'time_created': self.time_created
+            # 'time_updated': self.time_updated
         }
 
     def serialize_public(self):
