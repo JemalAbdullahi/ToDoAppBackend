@@ -1,8 +1,6 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
-
-
 db = SQLAlchemy()
 
 group_member_table = db.Table(
@@ -145,7 +143,7 @@ class SubTask(db.Model):
     note = db.Column(db.String())
     completed = db.Column(db.Boolean(), default=False, nullable=False)
     repeats = db.Column(db.String())
-    # deadline = db.Column(db.String())
+    #deadline = db.Column(db.Date())
     reminders = db.Column(db.String())
     group = db.Column(db.String())
     index = db.Column(db.Integer())

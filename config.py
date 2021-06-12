@@ -23,7 +23,6 @@ class Config(object):
 
     conn = psycopg2.connect(SQLALCHEMY_DATABASE_URI, sslmode='require')
 
-
 class ProductionConfig(Config):
     DEBUG = False
 
