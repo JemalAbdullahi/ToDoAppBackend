@@ -46,6 +46,10 @@ class User(db.Model):
         return '<id {}>'.format(self.id)
 
     def serialize(self):
+        if self.time_updated is None:
+            time_updated = ""
+        else:
+            time_updated = self.time_updated.isoformat()
         return {
             'api_key': self.api_key,
             'id': self.id,
@@ -56,8 +60,8 @@ class User(db.Model):
             'lastname': self.lastname,
             'phonenumber': self.phonenumber,
             'avatar': self.avatar,
-            'time_created': self.time_created
-            # 'time_updated': self.time_updated
+            'time_created': self.time_created.isoformat(),
+            'time_updated': time_updated
         }
 
     def serialize_public(self):
@@ -114,6 +118,10 @@ class Task(db.Model):
         return '<id {}>'.format(self.id)
 
     def serialize(self):
+        if self.time_updated is None:
+            time_updated = ""
+        else:
+            time_updated = self.time_updated.isoformat()
         return {
             'id': self.id,
             'title': self.title,
@@ -126,8 +134,8 @@ class Task(db.Model):
             'completed': self.completed,
             'note': self.note,
             'task_key': self.task_key,
-            'time_created': self.time_created,
-            'time_updated': self.time_updated
+            'time_created': self.time_created.isoformat(),
+            'time_updated': time_updated
         }
 
     def get_group_key(self):
@@ -174,6 +182,10 @@ class SubTask(db.Model):
         return '<id {}>'.format(self.id)
 
     def serialize(self):
+        if self.time_updated is None:
+            time_updated = ""
+        else:
+            time_updated = self.time_updated.isoformat()
         return {
             'title': self.title,
             'task_id': self.task_id,
@@ -185,8 +197,8 @@ class SubTask(db.Model):
             'note': self.note,
             'index': self.index,
             'subtask_key': self.subtask_key,
-            'time_created': self.time_created
-            # 'time_updated': self.time_updated
+            'time_created': self.time_created.isoformat(),
+            'time_updated': time_updated
         }
 
 
@@ -211,14 +223,18 @@ class Group(db.Model):
         return '<id {}>'.format(self.id)
 
     def serialize(self):
+        if self.time_updated is None:
+            time_updated = ""
+        else:
+            time_updated = self.time_updated.isoformat()
         return {
             'id': self.id,
             'name': self.name,
             'members': self.get_members(),
             'group_key': self.group_key,
             'is_public': self.is_public,
-            'time_created': self.time_created,
-            'time_updated': self.time_updated
+            'time_created': self.time_created.isoformat(),
+            'time_updated': time_updated
         }
 
     def get_members(self):
