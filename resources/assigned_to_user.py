@@ -2,9 +2,10 @@ from flask_restful import Resource
 from flask import request
 from Models import db, SubTask, Task, User
 
+
 class AssignedToUser(Resource):
 
-    # Delete Members: Also, delete Member's tasks related to the specified Group
+    # Delete User assigned to subtask
     def delete(self):
         header = request.headers["Authorization"]
         username = request.args.get('username')
@@ -14,9 +15,10 @@ class AssignedToUser(Resource):
         if not username:
             return {'Message': 'No username provided'}, 400
         else:
+            # Obtain subtask associated to the unique key
             subtask = SubTask.query.filter_by(subtask_key=header).first()
             if subtask:
-
+                # Check each member the subtask is assigned to, if a match with the provided username, then remove assignment
                 for m in subtask.assigned_to_user:
                     if m.username == username:
                         result = User.serialize(m)
