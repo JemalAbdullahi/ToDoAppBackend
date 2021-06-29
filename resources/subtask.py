@@ -26,13 +26,8 @@ class SubTasks(Resource):
                 subtask = SubTask(
                     title=json_data['title'],
                     task_id=task.id,
-                    note=json_data['note'],
-                    completed=json_data['completed'],
-                    repeats=json_data['repeats'],
                     group=json_data['group'],
-                    reminders=json_data['reminders'],
                     subtask_key=subtask_key,
-                    index=json_data['index'],
                 )
                 db.session.add(subtask)
                 db.session.commit()
@@ -75,7 +70,6 @@ class SubTasks(Resource):
                 #if (subtask.repeats != json_data['repeats']): subtask.repeats = json_data['repeats'],
                 #if (subtask.group != json_data['group']): subtask.group = json_data['group']
                 #if (subtask.reminders != json_data['reminders']): subtask.reminders = json_data['reminders']
-                #if (subtask.index != json_data['index']): subtask.index = json_data['index']
                 db.session.commit()
                 result = SubTask.serialize(subtask)
                 return {"status": 'success', 'data': result}, 200
