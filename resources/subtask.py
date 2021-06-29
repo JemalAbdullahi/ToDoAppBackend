@@ -54,6 +54,8 @@ class SubTasks(Resource):
             else:
                 return {"Message": "No task found with that task key"}, 404
 
+        return {"Message": "Incomplete"}, 404
+
     def put(self):
         header = request.headers["Authorization"]
         json_data = request.get_json(force=True)
