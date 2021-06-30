@@ -64,7 +64,6 @@ class SubTasks(Resource):
         else:
             subtask = SubTask.query.filter_by(subtask_key=header).first()
             if subtask:
-                #if (subtask.title != json_data['title']): subtask.title = json_data['title']
                 if (subtask.note != json_data['note']):
                     subtask.note = json_data['note']
                 if (subtask.completed != json_data['completed']):
@@ -72,8 +71,6 @@ class SubTasks(Resource):
                 if (subtask.due_date != datetime.fromisoformat(json_data['due_date'])):
                     subtask.due_date = datetime.fromisoformat(
                         json_data['due_date'])
-                #if (subtask.repeats != json_data['repeats']): subtask.repeats = json_data['repeats'],
-                #if (subtask.reminders != json_data['reminders']): subtask.reminders = json_data['reminders']
                 db.session.commit()
                 result = SubTask.serialize(subtask)
                 return {"status": 'success', 'data': result}, 200
