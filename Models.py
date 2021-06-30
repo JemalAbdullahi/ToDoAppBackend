@@ -167,7 +167,6 @@ class SubTask(db.Model):
     subtask_key = db.Column(db.String(), unique=True)
     title = db.Column(db.String(), nullable=False)
     completed = db.Column(db.Boolean(), default=False)
-
     note = db.Column(db.String(), default="")
     repeats = db.Column(db.String())
     due_date = db.Column(db.DateTime(timezone=False))
