@@ -167,7 +167,6 @@ class SubTask(db.Model):
     subtask_key = db.Column(db.String(), unique=True)
     title = db.Column(db.String(), nullable=False)
     completed = db.Column(db.Boolean(), default=False)
-    group = db.Column(db.String(), nullable=False)
 
     note = db.Column(db.String(), default="")
     repeats = db.Column(db.String())
@@ -182,10 +181,9 @@ class SubTask(db.Model):
                                        secondary=user_assigned_to_subtask_table,
                                        backref="subtask")
 
-    def __init__(self, title, task_id, group, subtask_key):
+    def __init__(self, title, task_id, subtask_key):
         self.title = title
         self.task_id = task_id
-        self.group = group
         self.subtask_key = subtask_key
 
     def __repr__(self):
@@ -197,15 +195,15 @@ class SubTask(db.Model):
         else:
             time_updated = self.time_updated.isoformat()
         return {
-            'title': self.title,
-            'task_id': self.task_id,
             'id': self.id,
+            'task_id': self.task_id,
+            'subtask_key': self.subtask_key,
+            'title': self.title,
+            'completed': self.completed,
+            'note': self.note,
             'repeats': self.repeats,
             'due_date': self.due_date,
             'reminders': self.reminders,
-            'completed': self.completed,
-            'note': self.note,
-            'subtask_key': self.subtask_key,
             'time_created': self.time_created.isoformat(),
             'time_updated': time_updated,
             'assigned_to': self.get_users_assigned_to
