@@ -3,6 +3,7 @@ from flask import request
 from Models import db, SubTask, Task, User
 import random
 import string
+from datetime import datetime
 
 
 class SubTasks(Resource):
@@ -68,8 +69,9 @@ class SubTasks(Resource):
                     subtask.note = json_data['note']
                 if (subtask.completed != json_data['completed']):
                     subtask.completed = json_data['completed']
-                if (subtask.due_date != json_data['due_date']):
-                    subtask.due_date = json_data['due_date']
+                if (subtask.due_date != datetime.fromisoformat(json_data['due_date'])):
+                    subtask.due_date = datetime.fromisoformat(
+                        json_data['due_date'])
                 #if (subtask.repeats != json_data['repeats']): subtask.repeats = json_data['repeats'],
                 #if (subtask.reminders != json_data['reminders']): subtask.reminders = json_data['reminders']
                 db.session.commit()
