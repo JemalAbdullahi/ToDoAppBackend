@@ -205,7 +205,7 @@ class SubTask(db.Model):
             'reminders': self.reminders,
             'time_created': self.time_created.isoformat(),
             'time_updated': time_updated,
-            'assigned_to': self.get_users_assigned_to
+            'assigned_to': self.get_users_assigned_to()
         }
 
     def get_users_assigned_to(self):
