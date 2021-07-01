@@ -13,7 +13,7 @@ class AssignedToUser(Resource):
         if not header:
             return {"Messege": "No subtask key!"}, 401
         else:
-            subtask = Subtask.query.filter_by(subtask_key=header).first()
+            subtask = SubTask.query.filter_by(subtask_key=header).first()
             if subtask:
                 result = subtask.get_users_assigned_to()
                 return {"status": 'success', 'data': result}, 200
