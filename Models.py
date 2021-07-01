@@ -201,7 +201,7 @@ class SubTask(db.Model):
             'completed': self.completed,
             'note': self.note,
             'repeats': self.repeats,
-            'due_date': self.due_date.isoformat(),
+            'due_date': self.due_date.isoformat() if self.due_date not None else datetime.date.today(),
             'reminders': self.reminders,
             'time_created': self.time_created.isoformat(),
             'time_updated': time_updated,
