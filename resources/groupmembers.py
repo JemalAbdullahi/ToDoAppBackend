@@ -90,9 +90,6 @@ class GroupMembers(Resource):
                 for m in group.members:
                     if m.username == username:
                         result = User.serialize(m)
-                        group_tasks = Task.query.filter_by(group_id=group.id)
-                        for task in group_tasks:
-                            db.session.delete(task)
                         group.members.remove(m)
                         if group.is_empty():
                             db.session.delete(group)

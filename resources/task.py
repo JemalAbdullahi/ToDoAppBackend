@@ -92,10 +92,6 @@ class Tasks(Resource):
             task = Task.query.filter_by(task_key=header).first()
             if task:
                 result = Task.serialize(task)
-                subtasks = SubTask.query.filter_by(task_id=task.id).all()
-                for subtask in subtasks:
-                    db.session.delete(subtask)
-                db.session.commit()
                 db.session.delete(task)
                 db.session.commit()
                 return {"status": 'success', 'data': result}, 200
