@@ -24,7 +24,7 @@ def index():
     return "<h1>Welcome to our server !!</h1>"
 
 @app.route('/privacy%20policy')
-def index():
+def privacy():
     return """
         <h1>Privacy Policy</h1>
         <p>Last updated: July 10, 2021</p>
