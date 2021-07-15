@@ -1,7 +1,7 @@
 from Models import db
 from api.api import api_bp
 import os
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import sys
 import logging
@@ -21,7 +21,7 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    return "<h1>Welcome to our server !!</h1>"
+    return render_template("index.html")
 
 
 @app.route('/privacypolicy')
